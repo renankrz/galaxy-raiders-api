@@ -16,7 +16,7 @@ To develop Galaxy Raiders, please install and use [docker][4].
 > guarantees that. Therefore, commands below can use the `gradle` CLI directly.
 
 Please also install [pre-commit][5] in your development environment to
-automatically format code and to detect bed smells before making new commits.
+automatically format code and to detect bad smells before making new commits.
 By default, this integration also uses [docker][4].
 
 ## Linting
@@ -24,11 +24,13 @@ By default, this integration also uses [docker][4].
 This project uses [ktlint][6] and [detekt][7] for static code analysis.
 
 If you installed [pre-commit][5], to execute the linters, run:
+
 ```bash
 pre-commit run --all-files
 ```
 
 Alternatively, to execute the linters manually, run:
+
 ```bash
 docker compose --profile dev run --rm linter
 ```
@@ -39,11 +41,13 @@ The compilation of all classes and the generation of a runnable self-contained
 JAR is made "behind the scenes" by [docker][4].
 
 To build the development images, run:
+
 ```bash
 docker compose --profile dev build
 ```
 
 To build the production images, run:
+
 ```bash
 docker compose --profile prod build
 ```
@@ -53,6 +57,7 @@ docker compose --profile prod build
 All tests in the project are developed using [JUnit 5][8].
 
 To execute all tests (with live reload), run:
+
 ```bash
 docker compose --profile dev up tester
 ```
@@ -60,11 +65,13 @@ docker compose --profile dev up tester
 ## Execution
 
 To execute the project in development mode (with live reload), run:
+
 ```bash
 docker compose --profile dev up demo --build
 ```
 
 To execute the project in production mode, run:
+
 ```bash
 docker compose --profile prod up game --build
 ```
@@ -72,11 +79,13 @@ docker compose --profile prod up game --build
 ## Other tasks
 
 To find available gradle tasks, run:
+
 ```bash
 docker compose --profile dev run --rm demo gradle --no-daemon tasks
 ```
 
 To execute any task, run:
+
 ```bash
 docker compose --profile dev run --rm demo gradle --no-daemon {task}
 ```
