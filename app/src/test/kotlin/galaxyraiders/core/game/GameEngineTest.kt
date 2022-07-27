@@ -204,6 +204,68 @@ class GameEngineTest {
   }
 
   @Test
+  fun `it generates an explosion when a missile hits an asteroid`() {
+    normalGame.field.generateAsteroid()
+    normalGame.field.generateMissile()
+
+    val missile = normalGame.field.missiles.last()
+    val asteroid = normalGame.field.asteroids.last()
+    val missileDistanceToAsteroid = asteroid.center.y - missile.center.y
+    val repetitionsToCollision = Math.ceil(
+      missileDistanceToAsteroid / (Math.abs(missile.velocity.dy) + Math.abs(asteroid.velocity.dy))
+    ).toInt()
+
+    repeat(repetitionsToCollision) {
+      normalGame.moveSpaceObjects()
+    }
+
+    assertEquals(normalGame.field.explosions.size, 0)
+
+    normalGame.handleCollisions()
+
+    assertEquals(1, normalGame.field.explosions.size)
+  }
+
+  @Test
+  fun `it doesn't generate an explosion when a missile hits an explosion`() {
+    val x = normalGame.field.width.toDouble() / 2
+    val y = normalGame.field.height.toDouble() / 2
+
+    normalGame.field.generateExplosion(x, y)
+    normalGame.field.generateMissile()
+
+    val explosion = normalGame.field.explosions.last()
+    val missile = normalGame.field.missiles.last()
+    val missileDistanceToExplosion = explosion.center.y - missile.center.y
+    val repetitionsToCollision = Math.ceil(
+      missileDistanceToExplosion / (Math.abs(missile.velocity.dy) + Math.abs(explosion.velocity.dy))
+    ).toInt()
+
+    repeat(repetitionsToCollision) {
+      normalGame.moveSpaceObjects()
+    }
+
+    assertEquals(normalGame.field.explosions.size, 1)
+
+    normalGame.handleCollisions()
+
+    assertEquals(1, normalGame.field.explosions.size)
+  }
+
+  @Test
+  fun `it removes an explosion after the determined number of ticks`() {
+    normalGame.field.generateExplosion(0.0, 0.0)
+
+    assertEquals(normalGame.field.explosions.size, 1)
+
+    repeat(GameEngineConfig.explosionMaxAge + 1) {
+      normalGame.updateExplosions()
+    }
+
+    assertEquals(normalGame.field.explosions.size, 0)
+  }
+
+  @Test
   fun `it can execute one iteration of the game loop`() {
     val numPlayerCommands = controllerSpy.playerCommands.size
     val numAsteroids = hardGame.field.asteroids.size
