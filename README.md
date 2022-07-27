@@ -3,6 +3,8 @@
 Template for the project of the course [MAC0218 - Programming Techniques II][1]
 at University of São Paulo (@USP).
 
+![Galaxy Raiders demo](/demo.gif?raw=true "Galaxy Raiders demo")
+
 # Development
 
 Galaxy Raiders is built in [Kotlin][2], a modern programming language for
