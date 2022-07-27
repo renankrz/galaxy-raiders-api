@@ -14,7 +14,7 @@ import java.util.stream.Stream
 import kotlin.test.assertEquals
 import kotlin.test.assertTrue
 
-@DisplayName("Given an ship")
+@DisplayName("Given a ship")
 class SpaceShipTest {
   private val ship = SpaceShip(
     initialPosition = Point2D(1.0, 1.0),

@@ -128,22 +128,22 @@ class Object2DTest {
   }
 
   @Test
-  fun `it can determine if it impacts a Object2D inside range `() {
+  fun `it can determine if it impacts an Object2D inside range `() {
     assertTrue(o1.impacts(o4))
   }
 
   @Test
-  fun `it can determine if it impacts a Object2D in the limit range `() {
+  fun `it can determine if it impacts an Object2D in the limit range `() {
     assertTrue(o1.impacts(o3))
   }
 
   @Test
-  fun `it can determine if it impacts a Object2D outside range `() {
+  fun `it can determine if it impacts an Object2D outside range `() {
     assertFalse(o1.impacts(o2))
   }
 
   @Test
-  fun `it shows it is a Object2D when converted to string `() {
+  fun `it shows it is an Object2D when converted to string `() {
     assertTrue(o1.toString().contains("Object2D"))
   }
 
@@ -178,7 +178,7 @@ class Object2DTest {
   }
 
   @Test
-  fun `it changes its velocity in an perfectly inellastic collision with another Object2D `() {
+  fun `it changes its velocity in a perfectly inellastic collision with another Object2D `() {
     val perfectlyInellasticCoefficientRestitution = 0.0
     o1.collideWith(o3, perfectlyInellasticCoefficientRestitution)
 
